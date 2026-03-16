@@ -14,7 +14,7 @@
 
 <br/>
 
-[![Live Demo](https://img.shields.io/badge/🚀%20LIVE%20DEMO-%20Click%20Here-FF4B4B?style=for-the-badge)]https://rag-knowledge-assistant-cuon3nlr7x6gqb7q4pglsc.streamlit.app/
+[![Live Demo](https://img.shields.io/badge/🚀%20LIVE%20DEMO-%20Click%20Here-FF4B4B?style=for-the-badge)](https://rag-knowledge-assistant-cuon3nlr7x6gqb7q4pglsc.streamlit.app/)
 
 <br/>
 
