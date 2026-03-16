@@ -7,11 +7,9 @@ except ImportError:
     STREAMLIT_AVAILABLE = False
 
 from langchain_groq import ChatGroq
-from langchain.memory import ConversationBufferWindowMemory
-from langchain.prompts import PromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.runnables import RunnablePassthrough
 from dotenv import load_dotenv
 from retriever import load_vector_store, get_retriever
 
@@ -31,7 +29,7 @@ def get_groq_key():
 
 
 def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
+    return "\n\n---\n\n".join(doc.page_content for doc in docs)
 
 
 def build_rag_chain():
@@ -45,10 +43,9 @@ def build_rag_chain():
         groq_api_key=get_groq_key()
     )
 
-    prompt = PromptTemplate(
-        input_variables=["context", "question", "chat_history"],
-        template="""You are an expert knowledge assistant. Answer questions
-accurately based ONLY on the provided context.
+    prompt = ChatPromptTemplate.from_template("""
+You are an expert knowledge assistant. Answer questions accurately 
+based ONLY on the provided context.
 
 RULES:
 1. Only use information from the CONTEXT below.
@@ -68,13 +65,11 @@ CONTEXT:
 
 QUESTION: {question}
 
-ANSWER:"""
-    )
+ANSWER:""")
 
-    # Store chat history as simple string
     chat_history_store = {"history": []}
 
-    def get_chat_history_str():
+    def get_history():
         if not chat_history_store["history"]:
             return "No previous conversation."
         lines = []
@@ -87,7 +82,7 @@ ANSWER:"""
         question = inputs["question"]
         docs = retriever.invoke(question)
         context = format_docs(docs)
-        chat_history = get_chat_history_str()
+        chat_history = get_history()
 
         chain = prompt | llm | StrOutputParser()
         answer = chain.invoke({
@@ -96,7 +91,6 @@ ANSWER:"""
             "chat_history": chat_history
         })
 
-        # Save to history
         chat_history_store["history"].append({
             "question": question,
             "answer": answer

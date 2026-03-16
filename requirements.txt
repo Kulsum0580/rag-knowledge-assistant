@@ -1,13 +1,13 @@
+streamlit
+python-dotenv
 langchain
 langchain-groq
 langchain-community
 langchain-core
+langchain-text-splitters
 langchain-huggingface
 faiss-cpu
-streamlit
-python-dotenv
 pypdf
 tiktoken
 sentence-transformers
 huggingface-hub
-langchain-text-splitters
