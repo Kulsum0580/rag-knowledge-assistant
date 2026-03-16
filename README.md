@@ -18,17 +18,8 @@
 
 <br/>
 
-### 🌐 [Live Demo →](https://your-app-url.streamlit.app)
+### 🌐 [Live Demo →]https://rag-knowledge-assistant-cuon3nlr7x6gqb7q4pglsc.streamlit.app/
 
-> ⚠️ Replace the link above with your actual Streamlit Cloud URL
-
-<br/>
-
-!https://rag-knowledge-assistant-cuon3nlr7x6gqb7q4pglsc.streamlit.app/
-
-</div>
-
----
 
 ## ✨ What Can You Do With This?
 
