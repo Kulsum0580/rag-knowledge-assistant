@@ -10,3 +10,4 @@ pypdf
 tiktoken
 sentence-transformers
 huggingface-hub
+langchain-text-splitters
